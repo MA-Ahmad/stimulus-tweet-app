@@ -25,4 +25,11 @@ export default class extends Controller {
       this.characterCountTarget.classList.remove("text-danger");
     }
   }
+
+  submit(event) {
+    var count = this.bodyTarget.value.length;
+    if (count > 140) {
+      event.preventDefault();
+    }
+  }
 }
