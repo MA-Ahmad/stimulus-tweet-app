@@ -1,5 +1,7 @@
-<div id="<%= dom_id(tweet) %>" class="card card-body mb-3">
+<div id="<%= dom_id(tweet) %>" class="card card-body mb-3" data-controller="inline-edit" style="padding: 5px; border: 1px solid gray;">
     <dvi><%= tweet.title %></dvi>
-    <dvi><%= tweet.body %></dvi>
     <div class="text-muted"><small><%= tweet.created_at %></small></div>
+    <div data-inline-edit-target="body" data-action="click->inline-edit#toggle"><%= tweet.body %></div>
+
+    <%= render "form", tweet: tweet, class: "d-none" %>
 </div>
