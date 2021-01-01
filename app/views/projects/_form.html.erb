@@ -22,16 +22,21 @@
   </div>
 
   <h4>Tasks</h4>
+  <div data-controller="nested-form">
+    <template data-target="nested-form.template">
+      <%= form.fields_for :tasks, Task.new, child_index: 'NEW_RECORD' do |task| %>
+        <%= render "task_fields", form: task %>
+      <% end %>
+    </template>
 
-  <template>
-    <%= form.fields_for :tasks, Task.new, child_index: 'NEW_RECORD' do |task| %>
+    <%= form.fields_for :tasks do |task| %>
       <%= render "task_fields", form: task %>
     <% end %>
-  </template>
 
-  <%= form.fields_for :tasks do |task| %>
-    <%= render "task_fields", form: task %>
-  <% end %>
+    <div class="mb-3" data-target="nested-form.links">
+      <%= link_to "Add Task", "#", class: "btn btn-outline-primary", data: { action: "click->nested-form#add_association" } %>
+    </div>
+  </div>
 
   <!-- <div class="actions">
     <%= form.submit %>
