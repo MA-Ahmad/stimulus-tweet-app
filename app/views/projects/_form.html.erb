@@ -22,11 +22,15 @@
   </div>
 
   <h4>Tasks</h4>
+
+  <template>
+    <%= form.fields_for :tasks, Task.new, child_index: 'NEW_RECORD' do |task| %>
+      <%= render "task_fields", form: task %>
+    <% end %>
+  </template>
+
   <%= form.fields_for :tasks do |task| %>
-    <div class="form-group">
-      <%= task.label :description %>
-      <%= task.text_field :description, class: 'form-control' %>
-    </div>
+    <%= render "task_fields", form: task %>
   <% end %>
 
   <!-- <div class="actions">
